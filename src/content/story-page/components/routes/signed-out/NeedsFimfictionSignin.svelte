@@ -1,0 +1,1 @@
+You need to be logged into a fimfiction account to use this extension
