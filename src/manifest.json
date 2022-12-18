@@ -1,9 +1,5 @@
 {
-  "background": {
-    "scripts": [
-      "background/index.js"
-    ]
-  },
+  "manifest_version": 3,
   "content_scripts": [
     {
       "js": [
@@ -13,8 +9,5 @@
         "https://www.fimfiction.net/story/*"
       ]
     }
-  ],
-  "browser_action": {
-    "default_popup": "popup/index.html"
-  }
+  ]
 }

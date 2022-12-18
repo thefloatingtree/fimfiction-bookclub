@@ -9,7 +9,8 @@ import Box from "../../../../../components/Box.svelte";
     export let member
     export let bookClub
 
-    $: chapter = bookClub.story.chapters[member.nextChapterIndex]
+    $: chapterIndex = member.nextChapterIndex >= bookClub.story.chapters.length ? bookClub.story.chapters.length - 1 : member.nextChapterIndex
+    $: chapter = bookClub.story.chapters[chapterIndex]
     $: percent = (member.percentageComplete * 100).toFixed(0)
     $: noteCount = $notes.filter(note => note.user.email === member.email).length
 
@@ -57,7 +58,7 @@ import Box from "../../../../../components/Box.svelte";
             <div class="tw-w-4 tw-h-4">
                 <FaBookmark />
             </div>
-            <span>Chapter {member.nextChapterIndex + 1} {chapter.title}</span>
+            <span>Chapter {chapterIndex + 1} {chapter.title}</span>
         </Button>
     </div>
 </Box>

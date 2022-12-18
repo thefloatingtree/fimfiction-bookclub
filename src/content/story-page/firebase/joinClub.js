@@ -15,7 +15,6 @@ export async function joinClub(userRef, inviteCode) {
     }
 
     const bookClub = getFirst(inviteClubSnapshot)
-    console.log(bookClub)
 
     await updateDoc(bookClub.ref, {
         memberRefs: arrayUnion(userRef)

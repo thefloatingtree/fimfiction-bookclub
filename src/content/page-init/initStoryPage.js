@@ -1,18 +1,15 @@
-import { getElementsFromXPathObject } from "./util";
-
-const Elements = getElementsFromXPathObject({
-    storyHeader: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]/header",
-    storyHeaderRating: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]/header/a",
-    storyHeaderTitle: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]/header/div",
-    storyDetailsContainer: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]/div",
-    storyBox: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]",
-    chapters: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]/div[1]/form/ul",
-    username: "/html/body/div[1]/div[1]/div[1]/nav/ul/li[2]/a/span",
-    storyTitle: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]/header/div/a",
-    storyWordCount: "/html/body/div[1]/div[1]/div[4]/div/div[4]/div/div[2]/article/div[2]/div/form/div[1]/div/b",
-    loginButton: "/html/body/div[1]/div[1]/div[1]/div/div[2]/ul/li[6]/a"
-})
-
+const Elements = {
+    storyHeader: document.querySelector('header.title'),
+    storyHeaderRating: document.querySelector('header.title')?.querySelector('a'),
+    storyHeaderTitle: document.querySelector('header.title')?.querySelector('div'),
+    storyBox: document.querySelector('div.story_content_box'),
+    storyDetailsContainer: document.querySelector('div.story_content_box')?.children[1],
+    chapters: document.querySelector('ul.chapters'),
+    username: document.querySelector('nav.user_toolbar')?.querySelectorAll('a.button')[1]?.querySelector('span'),
+    storyTitle: document.querySelector('header.title')?.querySelector('a.story_name'),
+    storyWordCount: document.querySelector('div.chapters-footer')?.querySelector('div.word_count')?.querySelector('b'),
+    loginButton: document.querySelector('ul.nav-bar-list')?.children[5]?.querySelector('a')
+}
 
 function injectBookclubButton() {
     const bookclubButton = document.createElement('button')

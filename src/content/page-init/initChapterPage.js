@@ -1,11 +1,10 @@
 import { activeParagraphIndex, activeParagraphText } from "../chapter-page/store/activeParagraph";
-import { getElementsFromXPathObject } from "./util";
 
-const Elements = getElementsFromXPathObject({
-    paragraphOptions: "/html/body/div[1]/div[1]/div[4]/div/div/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div",
-    paragraphOptionsWrapper: "/html/body/div[1]/div[1]/div[4]/div/div/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]",
-    paragraphsWrapper: "/html/body/div[1]/div[1]/div[4]/div/div/div[3]/div[1]/div[1]/div[1]/div[2]/div[5]/div/div"
-})
+const Elements = {
+    paragraphOptions: document.querySelector('div.paragraph-options')?.querySelector('div.button-group'),
+    paragraphOptionsWrapper: document.querySelector('div.paragraph-options'),
+    paragraphsWrapper: document.getElementById('chapter-body')?.querySelector('div.bbcode')
+}
 
 function getChildElementIndex(node) {
     return Array.prototype.indexOf.call(node.parentNode.children, node);
@@ -52,6 +51,8 @@ export function getChapter() {
 
     const pathList = window.location.pathname.split('/')
 
+    console.log({ id: parseInt(pathList[3]), title: pathList[5] })
+
     return {
         id: parseInt(pathList[3]),
         title: pathList[5]
@@ -61,6 +62,8 @@ export function getChapter() {
 export default function initChapterPage() {
     Elements.svelteOutlet = injectSvelteOutlet()
     Elements.noteButton = injectNoteButton()
+
+    getChapter()
 
     Elements.noteButton.addEventListener('click', () => {
         if (Elements.noteButton.toggled) {

@@ -31,8 +31,8 @@
     $: paragraphText = note.paragraphText.substring(0, 256) + "..."
     $: timeSinceCreation = humanize(new Date(), note.creation.toDate())
 
-    $: chapterUrl = $activeBookClub.story.chapters[note.chapterId].url
-    $: chapterTitle = $activeBookClub.story.chapters[note.chapterId].title
+    $: chapterUrl = $activeBookClub.story.chapters[note.chapterId - 1].url
+    $: chapterTitle = $activeBookClub.story.chapters[note.chapterId - 1].title
 
     let localLikeCount = note.likes.length
     let localLike = note.likes.some(user => user.path === $userData.ref.path)
